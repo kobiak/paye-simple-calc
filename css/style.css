@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+
+.hide {display:none;}
+
+.form-group {margin:3em 0; position:relative; overflow:hidden;}
+
+.numbers {padding:0;}
+.numbers > div {padding:5px 15px; margin:0 0 1px 0;}
+.incomeRow {background:#d2e7f5;}
+.taxRow {background:#fef7ec;}
+.accRow {background:#ffd5ba;}
+.takeRow {background:#c8f3da;}
+
+.round1 {border-radius: 4px 0 0 0;}
+.round2 {border-radius: 0 0 0 4px;}
+.round3 {border-radius: 0 4px 0 0;}
+.round4 {border-radius: 0 0 4px 0;}
+
+.big-number {font-size:3em; color:#5BBD84; font-weight:bold;}
+.big-number-gross {font-size:3em; color:#333333; font-weight:bold;}
+.medium-number {font-size:2.5em; color:#5BBD84; font-weight:bold;}
+.small-number {font-size:1.5em; color:#5BBD84; font-weight:bold;}
+
+.chartBox {position:relative;}
+#chartSum {position:absolute; text-align:center; width:300px; top:50%; font-size:2em; line-height:2em; margin-top:-1em;}
