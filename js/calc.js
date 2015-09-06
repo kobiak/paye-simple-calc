@@ -11,11 +11,18 @@ function myCalc() {
 	
 
     if (incomeBeforeTax == "") {
-        alert("please specify your income");
+		$('.error-message').show().addClass('alert bg-danger text-center col-md-6 col-md-offset-3').html('please specify your income');
+        
         return;
     } else if (isNaN(incomeBeforeTax)) {
-        alert("your income should be a number");
+		$('.error-message').show().addClass('alert bg-danger text-center col-md-6 col-md-offset-3').html('your income should be a number');
+       
         return;
+    
+	} else if (!isNaN(incomeBeforeTax)) {
+		$('.error-message').hide();
+       
+        
     };
 
     var incomeAfterTax = 0;
