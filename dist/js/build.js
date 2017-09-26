@@ -48,16 +48,14 @@ function myCalc() {
 
         $('.error-message').hide();
 
-    };
-
-    var incomeAfterTax = 0;
+    };    
 
     var kiwiSaver = incomeBeforeTax * kiwiSaverRate;
 
     var studentLoan = 0;
 
     if (incomeBeforeTax > studentLoanMinIncome) {
-        var studentLoan = (incomeBeforeTax - studentLoanMinIncome) * studentLoanRate;
+        studentLoan = (incomeBeforeTax - studentLoanMinIncome) * studentLoanRate;
     };
 
     if (incomeBeforeTax > 70001) {
