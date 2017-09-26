@@ -1,0 +1,36 @@
+{
+  "name": "paye-simple-calc",
+  "version": "1.0.1",
+  "description": "Simple example of Pay as You Earn calculator for NZ",
+  "main": "index.html",
+  "dependencies": {
+    "chart.js": "^2.7.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.4",
+    "cssnano": "^3.10.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-uglify": "^3.1.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-postcss": "^0.9.0",
+    "grunt-sass": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kobiak/paye-simple-calc.git"
+  },
+  "keywords": [
+    "paye",
+    "javascript"
+  ],
+  "author": "EvgenyK",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kobiak/paye-simple-calc/issues"
+  },
+  "homepage": "https://github.com/kobiak/paye-simple-calc#readme"
+}

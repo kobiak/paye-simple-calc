@@ -1,144 +1,139 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Simple PAYE calc for New Zealand</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Simple PAYE calc for New Zealand</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
+    <section>
+        <div class="container">
+            <div class="row">
 
-<section>
-  <div class="container">
-    <div class="row"> 
-      
-      <!-- Text input-->
-      <div class="form-group">
-        <div class="col-md-3 col-md-offset-3 col-sm-6 col-xs-6">
-          <input id="income" name="textinput" type="text" placeholder="$ per annum" class="form-control input-lg">
-          <span>your income per annum</span> </div>
-        <div class="col-md-3 col-sm-6 col-xs-6 col-sm-offset-0">
-          <button class="btn btn-lg btn-primary" onClick="myCalc()"><span class="glyphicon glyphicon-piggy-bank"></span> Calculate</button>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-    	<div class="error-message"></div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <h4>Do you have KiwiSaver?</h4>
-        <form id="kiwiSaverForm">
-         <label>
+                <!-- Text input-->
+                <div class="form-group">
+                    <div class="col-md-3 col-md-offset-3 col-sm-6 col-xs-6">
+                        <input id="income" name="textinput" type="text" placeholder="$ per annum" class="form-control input-lg">
+                        <span>your income per annum</span> </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6 col-sm-offset-0">
+                        <button class="btn btn-lg btn-primary" onClick="myCalc()"><span class="glyphicon glyphicon-piggy-bank"></span> Calculate</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="error-message"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Do you have KiwiSaver?</h4>
+                    <form id="kiwiSaverForm">
+                        <label>
             <input type="radio" class="kiwiSaver" name="kiwiSaver" value="0" checked>
             Opt out</label>
-          
-          <label>
+
+                        <label>
             <input type="radio" class="kiwiSaver" name="kiwiSaver" value="0.03">
             3%</label>
-          <label>
+                        <label>
             <input type="radio" class="kiwiSaver" name="kiwiSaver" value="0.04">
             4%</label>
-          <label>
+                        <label>
             <input type="radio" class="kiwiSaver" name="kiwiSaver" value="0.08">
             8%</label>
-        </form>
-        <h4>Do you have student loan?</h4>
-        <form id="studentLoanForm">
-        	<label>
-            <input type="radio" class="studentLoan" name="studentLoan" value="0" checked>
-            No student loan</label>
-          <label>
-            <input type="radio" class="studentLoan" name="studentLoan" value="0.12">
-            12%</label>
-        </form>
-      </div>
-      <div class="col-md-6"> </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 col-sm-6 col-xs-6 numbers  text-right">
-        <h3>&nbsp;</h3>
-        <div class="incomeRow round1">Gross Income</div>
-        <div class="taxRow">Tax to Pay</div>
-        <div class="accRow">ACC to Pay</div>
-        <div class="takeRow round2">You take home</div>
-        
-      </div>
-      <div class="col-md-2 col-sm-6 col-xs-6 numbers">
-        <h3>Your</h3>
-        <div class="incomeRow"><span id="grossIncome" class="currency">...</span></div>
-        <div class="taxRow"><span id="taxAmount" class="currency">...</span></div>
-        <div class="accRow"><span id="accAmount" class="currency">...</span></div>
-        <div class="takeRow"><span class="netIncome currency">...</span></div>
-       
-      </div>
-      <div class="col-md-2 hidden-sm hidden-xs numbers">
-        <h3>Minimum *</h3>
-        <div class="incomeRow"><span id="grossIncomeMin" class="currency">...</span></div>
-        <div class="taxRow"><span id="taxAmountMin" class="currency">...</span></div>
-        <div class="accRow"><span id="accAmountMin" class="currency">...</span></div>
-        <div class="takeRow"><span id="resultMin" class="currency">...</span></div>
-      </div>
-      <div class="col-md-2 numbers hidden-sm hidden-xs">
-        <h3>Avarage **</h3>
-        <div class="incomeRow"><span id="grossIncomeAvr" class="currency">...</span></div>
-        <div class="taxRow"><span id="taxAmountAvr" class="currency">...</span></div>
-        <div class="accRow"><span id="accAmountAvr" class="currency">...</span></div>
-        <div class="takeRow"><span id="resultAvr" class="currency">...</span></div>
-      </div>
-      <div class="col-md-2 numbers hidden-sm hidden-xs">
-        <h3>Median **</h3>
-        <div class="incomeRow round3"><span id="grossIncomeMed" class="currency">...</span></div>
-        <div class="taxRow"><span id="taxAmountMed" class="currency">...</span></div>
-        <div class="accRow"><span id="accAmountMed" class="currency">...</span></div>
-        <div class="takeRow round4"><span id="resultMed" class="currency">...</span></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 text-right">
-        <p>* current minimum wage in New Zealand</p>
-        <p>** data from June 2014</p>
-      </div>
-    </div>
-    <div class="row hide">
-      <div class="col-md-4 chartBox">
-        
-      </div>
-      <div class="col-md-4">
-        <h4>You take home</h4>
-        <p><span class="netIncome currency big-number">...</span><br>
-          per year </p>
-        <p><span class="perMonth currency medium-number">...</span><br>
-          per month</p>
-        <p><span class="perWeek currency small-number">...</span><br>
-          per week</p>
-      </div>
-      <div class="col-md-4">
-        <h4>Additional contribution</h4>
-        <p>
-        KiwiSaver<br>
-        <span class="currency kiwiSaverResults medium-number">...</span><br>
-          per year </p>
-        <p>
-        Student Loan<br>
-        <span class="studentLoanResults currency medium-number">...</span><br>
-          per year </p>
-      </div>
-    </div>
-  </div>
-</section>
-<footer>
-	<div class="container">
-    	<div id="copyrights">Developed for demonstration only by <a href="http://evgenyk.nz" target="_blank" title="EvgenyK">EvgenyK</a> | You should use <a href="http://ird.govt.nz" target="_blank" title="ird.govt.nz">ird.govt.nz</a> for all legal calculations | <a href="https://github.com/kobiak/paye-simple-calc" target="_blank" title="Very simple PAYE calc for New Zealand">GitHub project</a></div>
-	
-    </div>
-</footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="js/calc.js"></script>
-<script src="js/jquery.formatCurrency-1.4.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/charts.js"></script>
+                    </form>
+                    <h4>Do you have student loan?</h4>
+                    <form id="studentLoanForm">
+                        <label>
+                            <input type="radio" class="studentLoan" name="studentLoan" value="0" checked>
+                            No student loan
+                        </label>
+                        <label>
+                            <input type="radio" class="studentLoan" name="studentLoan" value="0.12">
+                            12%
+                        </label>
+                    </form>
+                </div>
+                <div class="col-md-6"> </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-6 numbers  text-right">
+                    <h3>&nbsp;</h3>
+                    <div class="incomeRow round1">Gross Income</div>
+                    <div class="taxRow">Tax to Pay</div>
+                    <div class="accRow">ACC to Pay</div>
+                    <div class="takeRow round2">You take home</div>
+
+                </div>
+                <div class="col-md-2 col-sm-6 col-xs-6 numbers">
+                    <h3>Your</h3>
+                    <div class="incomeRow"><span id="grossIncome" class="currency">...</span></div>
+                    <div class="taxRow"><span id="taxAmount" class="currency">...</span></div>
+                    <div class="accRow"><span id="accAmount" class="currency">...</span></div>
+                    <div class="takeRow"><span class="netIncome currency">...</span></div>
+
+                </div>
+                <div class="col-md-2 hidden-sm hidden-xs numbers">
+                    <h3>Minimum *</h3>
+                    <div class="incomeRow"><span id="grossIncomeMin" class="currency">...</span></div>
+                    <div class="taxRow"><span id="taxAmountMin" class="currency">...</span></div>
+                    <div class="accRow"><span id="accAmountMin" class="currency">...</span></div>
+                    <div class="takeRow"><span id="resultMin" class="currency">...</span></div>
+                </div>
+                <div class="col-md-2 numbers hidden-sm hidden-xs">
+                    <h3>Avarage **</h3>
+                    <div class="incomeRow"><span id="grossIncomeAvr" class="currency">...</span></div>
+                    <div class="taxRow"><span id="taxAmountAvr" class="currency">...</span></div>
+                    <div class="accRow"><span id="accAmountAvr" class="currency">...</span></div>
+                    <div class="takeRow"><span id="resultAvr" class="currency">...</span></div>
+                </div>
+                <div class="col-md-2 numbers hidden-sm hidden-xs">
+                    <h3>Median **</h3>
+                    <div class="incomeRow round3"><span id="grossIncomeMed" class="currency">...</span></div>
+                    <div class="taxRow"><span id="taxAmountMed" class="currency">...</span></div>
+                    <div class="accRow"><span id="accAmountMed" class="currency">...</span></div>
+                    <div class="takeRow round4"><span id="resultMed" class="currency">...</span></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <p>* current minimum wage in New Zealand</p>
+                    <p>** data from June 2014</p>
+                </div>
+            </div>
+            <div class="row hide">
+                <div class="col-md-4 chartBox">
+
+                </div>
+                <div class="col-md-4">
+                    <h4>You take home</h4>
+                    <p><span class="netIncome currency big-number">...</span><br> per year </p>
+                    <p><span class="perMonth currency medium-number">...</span><br> per month</p>
+                    <p><span class="perWeek currency small-number">...</span><br> per week</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Additional contribution</h4>
+                    <p>KiwiSaver<br>
+                        <span class="currency kiwiSaverResults medium-number">...</span><br> per year </p>
+                    <p>Student Loan<br>
+                        <span class="studentLoanResults currency medium-number">...</span><br> per year </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div id="copyrights">Developed for demonstration only by <a href="http://evgenyk.nz" target="_blank" title="EvgenyK">EvgenyK</a> | You should use <a href="http://ird.govt.nz" target="_blank" title="ird.govt.nz">ird.govt.nz</a> for all legal calculations | <a href="https://github.com/kobiak/paye-simple-calc" target="_blank" title="Very simple PAYE calc for New Zealand">GitHub repo</a></div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+    <script src="dist/js/build.min.js"></script>
+
 </body>
+
 </html>
