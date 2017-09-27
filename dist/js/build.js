@@ -175,11 +175,7 @@
 ;// Calculating tax
 (function ($) {
 
-    $('body').on('click touch', '.js-btn-calc', function () {
-        myCalc();
-    });
-
-    myCalc = function () {
+    var myCalc = function () {
 
         $("#yourIncome").remove();
 
@@ -188,7 +184,6 @@
         var studentLoanRate = $('input:radio[class=studentLoan]:checked').val();
         var studentLoanMinIncome = 19084;
         var incomeAfterTax = 0;
-
 
         if (incomeBeforeTax == "") {
 
@@ -204,7 +199,7 @@
 
             $('.error-message').hide();
 
-        };
+        }
 
         var accLevy = (incomeBeforeTax * 0.0139).toFixed(2);
 
@@ -214,7 +209,7 @@
 
         if (incomeBeforeTax > studentLoanMinIncome) {
             studentLoan = (incomeBeforeTax - studentLoanMinIncome) * studentLoanRate;
-        };
+        }
 
         if (incomeBeforeTax > 70001) {
 
@@ -232,7 +227,7 @@
 
             incomeAfterTax = (incomeBeforeTax - (incomeBeforeTax * 0.105)) - accLevy - kiwiSaver - studentLoan;
 
-        };
+        }
 
 
         incomeAfterTax = incomeAfterTax.toFixed(2);
@@ -275,7 +270,7 @@
         $('.hide').removeClass('hide');
 
         // pie chart data
-        data = {
+        var data = {
             datasets: [{
                 data: [incomeAfterTax, yourTax, yourACC, kiwiSaver, studentLoan],
                 backgroundColor: [
@@ -297,14 +292,14 @@
             ]
 
         };
-        
+
         $(".chartBox").append('<canvas id="yourIncome" width="300" height="300">&nbsp;</canvas><div id="chartSum" class="currency big-number-gross"></div>');
         $("#chartSum").html(incomeBeforeTax);
-        
+
         // get pie chart canvas
         var ctx = $("#yourIncome");
         // draw pie chart
-        var myDoughnutChart = new Chart(ctx, {
+        new Chart(ctx, {
             type: 'doughnut',
             data: data,
             options: {
@@ -324,4 +319,13 @@
 
 
     };
+
+    $('body').on('click touch', '.js-btn-calc', function () {
+        myCalc();
+    });
+
+    $('body').on('submit', '#income-form', function (e) {
+        e.preventDefault();
+        myCalc();
+    });
 })(jQuery);
