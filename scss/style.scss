@@ -84,7 +84,8 @@
 #chartSum {
     position: absolute;
     text-align: center;
-    width: 300px;
+    width: 100%;
+    max-width: 360px;
     top: 50%;
     font-size: 2em;
     line-height: 2em;
