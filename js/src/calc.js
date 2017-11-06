@@ -3,15 +3,15 @@
 
     var myCalc = function () {
 
-        $("#yourIncome").remove();
+        $('#yourIncome').remove();
 
-        var incomeBeforeTax = $("#income").val();
+        var incomeBeforeTax = $('#income').val();
         var kiwiSaverRate = $('input:radio[class=kiwiSaver]:checked').val();
         var studentLoanRate = $('input:radio[class=studentLoan]:checked').val();
         var studentLoanMinIncome = 19084;
         var incomeAfterTax = 0;
 
-        if (incomeBeforeTax == "") {
+        if (incomeBeforeTax == '') {
 
             $('.error-message').show().addClass('alert bg-danger text-center col-md-6 col-md-offset-3').html('please specify your income');
             return;
@@ -119,11 +119,11 @@
 
         };
 
-        $(".chartBox").append('<canvas id="yourIncome" width="300" height="300">&nbsp;</canvas><div id="chartSum" class="currency big-number-gross"></div>');
-        $("#chartSum").html(incomeBeforeTax);
+        $('.chartBox').append('<canvas id="yourIncome" width="300" height="300">&nbsp;</canvas><div id="chartSum" class="currency big-number-gross"></div>');
+        $('#chartSum').html(incomeBeforeTax);
 
         // get pie chart canvas
-        var ctx = $("#yourIncome");
+        var ctx = $('#yourIncome');
         // draw pie chart
         new Chart(ctx, {
             type: 'doughnut',
