@@ -2,6 +2,8 @@
 
 module.exports = function (grunt) {
 
+    const sass = require('node-sass');
+
     grunt.initConfig({
 
         concat: {
@@ -29,10 +31,12 @@ module.exports = function (grunt) {
         },
 
         sass: {
+            options: {
+                implementation: sass,
+                sourceMap: true
+            },
             dist: {
-                options: {
-                    sourceMap: false
-                },
+
                 files: [{
                     expand: true,
                     cwd: 'scss',
@@ -59,7 +63,7 @@ module.exports = function (grunt) {
                 src: 'dist/css/*.css'
             }
         },
-        
+
         watch: {
             js: {
                 files: ['js/**/*.js'],
