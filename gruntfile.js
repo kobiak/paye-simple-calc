@@ -12,7 +12,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 src: ['js/*/*.js'],
-                dest: 'dist/js/build.js',
+                dest: 'build/js/build.js',
             },
         },
 
@@ -25,7 +25,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    'dist/js/build.min.js': ['dist/js/build.js'],
+                    'build/js/build.min.js': ['build/js/build.js']
                 }
             }
         },
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
         sass: {
             options: {
                 implementation: sass,
-                sourceMap: true
+                sourceMap: false
             },
             dist: {
 
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: 'scss',
                     src: ['*.scss'],
-                    dest: 'dist/css',
+                    dest: 'build/css',
                     ext: '.min.css'
 				}]
             }
@@ -60,9 +60,21 @@ module.exports = function (grunt) {
                 ]
             },
             dist: {
-                src: 'dist/css/*.css'
+                src: 'build/css/*.css'
             }
         },
+
+        copy: {
+            main: {
+                files: [{
+                    expand: true,
+                    src: ['index.html'],
+                    dest: 'build/',
+                    filter: 'isFile'
+                }, ],
+            }
+        },
+
 
         watch: {
             js: {
@@ -82,8 +94,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-postcss');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['js', 'css']);
+    grunt.registerTask('default', ['js', 'css', 'copy']);
     grunt.registerTask('js', ['concat', 'uglify']);
     grunt.registerTask('css', ['sass', 'postcss']);
 
