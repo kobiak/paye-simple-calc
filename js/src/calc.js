@@ -67,8 +67,8 @@
         $('.perMonth').html(incomeAfterTax / 12);
         $('.perWeek').html(incomeAfterTax / 52);
 
-        var minIncome = 29640;
-        var avgIncome = 51532;
+        var minIncome = 36816;
+        var avgIncome = 52832;
         var mdnIncome = 44876;
 
         var minIncomeAfterTax = minIncome - 4207 - 29.78;
